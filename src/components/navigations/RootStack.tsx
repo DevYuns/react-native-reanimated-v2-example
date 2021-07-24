@@ -3,21 +3,17 @@ import {
   createStackNavigator,
 } from '@react-navigation/stack';
 
-import Intro from '../pages/Intro';
+import Home from '../pages/Home';
 import {NavigationContainer} from '@react-navigation/native';
 import React from 'react';
-import Temp from '../pages/Temp';
 import {useTheme} from 'dooboo-ui';
 
 export type RootStackParamList = {
-  default: undefined;
-  Intro: undefined;
-  Temp: {param: string};
+  Home: undefined;
 };
 
-export type RootStackNavigationProps<
-  T extends keyof RootStackParamList = 'default',
-> = StackNavigationProp<RootStackParamList, T>;
+export type RootStackNavigationProps<T extends keyof RootStackParamList> =
+  StackNavigationProp<RootStackParamList, T>;
 
 const Stack = createStackNavigator<RootStackParamList>();
 
@@ -27,7 +23,7 @@ function RootStack(): React.ReactElement {
   return (
     <NavigationContainer>
       <Stack.Navigator
-        initialRouteName="Intro"
+        initialRouteName="Home"
         screenOptions={{
           headerStyle: {
             backgroundColor: theme.background,
@@ -36,8 +32,7 @@ function RootStack(): React.ReactElement {
           headerTintColor: theme.primary,
         }}
         headerMode={themeType === 'dark' ? 'screen' : 'float'}>
-        <Stack.Screen name="Intro" component={Intro} />
-        <Stack.Screen name="Temp" component={Temp} />
+        <Stack.Screen name="Home" component={Home} />
       </Stack.Navigator>
     </NavigationContainer>
   );
